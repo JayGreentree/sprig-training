@@ -1,0 +1,30 @@
+dateModified: 1705021215
+email:
+  fromEmail: ben@putyourlightson.com
+  fromName: 'Sprig Training'
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    0b2826e6-4b3f-47c6-a726-df613dcdd607: Text # Text
+    326db6f6-0577-4166-a7f3-c64d1c0b1bc3: Common # Common
+    b9be22a6-6ef5-4a3a-9c8f-163610685d49: Articles # Articles
+    b1797aea-7808-418c-a68b-1cb07b2b1c7c: Default # Default
+    bd3a4e55-c4e4-473f-8a85-dd23d31febdf: 'Sprig Training' # Sprig Training
+    d495a9f4-ec12-4552-b53e-346065fabeaa: 'Sprig Training' # Sprig Training
+plugins:
+  sprig:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.1
+system:
+  edition: solo
+  live: true
+  name: 'Sprig Training'
+  schemaVersion: 4.5.3.0
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true

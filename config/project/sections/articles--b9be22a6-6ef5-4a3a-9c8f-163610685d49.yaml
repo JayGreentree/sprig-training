@@ -1,0 +1,12 @@
+defaultPlacement: end
+enableVersioning: true
+handle: articles
+name: Articles
+propagationMethod: all
+siteSettings:
+  bd3a4e55-c4e4-473f-8a85-dd23d31febdf: # Sprig Training
+    enabledByDefault: true
+    hasUrls: true
+    template: articles/_entry
+    uriFormat: 'articles/{slug}'
+type: channel
