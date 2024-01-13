@@ -1,10 +1,12 @@
 {% extends '_layout.twig' %}
 
 {% block body %}
-    {% set entryIds = craft.entries.ids() %}
-
-    <hr>
-    {{ sprig('_components/article1.twig') }}
-    <hr>
-    {{ sprig('_components/article2.twig') }}
+    <div class="flex divide-x">
+        <div class="w-1/2 ">
+            {{ sprig('_components/article1.twig') }}
+        </div>
+        <div class="w-1/2">
+            {{ sprig('_components/article2.twig') }}
+        </div>
+    </div>
 {% endblock %}
