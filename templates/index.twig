@@ -1,5 +1,10 @@
-{% extends '_layout' %}
+{% extends '_layout.twig' %}
 
 {% block body %}
-    {{ sprig('_components/article') }}
+    {% set entryIds = craft.entries.ids() %}
+
+    <hr>
+    {{ sprig('_components/article1.twig') }}
+    <hr>
+    {{ sprig('_components/article2.twig') }}
 {% endblock %}
