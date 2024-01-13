@@ -1,11 +1,10 @@
 # Sprig Training
 
-Source code used in live Sprig training sessions.
+Source code used in live Sprig training sessions. Each session gets its own branch, named after the date of the session.
 
 https://putyourlightson.com/sprig/training
 
-
-### Local Develeopment Setup using DDEV
+### Local Development using DDEV
 
 ```shell
 # Starts the DDEV project.
