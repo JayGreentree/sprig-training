@@ -1,0 +1,21 @@
+{% extends '_layout.twig' %}
+
+{% block body %}
+    <div class="m-4 flex justify-center items-center">
+        <div class="mx-auto">
+            <div>
+                <div class="mt-3 flex space-x-6">
+                    {{ sprig('_components/shopping-cart/products-oob', { }, {
+                        id: 'shopping-cart-products',
+                    }) }}
+                    <div class="flex flex-col space-y-3">
+                        {{ include('_components/shopping-cart/items') }}
+                        {{ sprig('_components/shopping-cart/order', { }, {
+                            id: 'shopping-cart-order',
+                        }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

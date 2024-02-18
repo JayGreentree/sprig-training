@@ -1,12 +1,1 @@
-{% extends '_layout.twig' %}
-
-{% block body %}
-    <div class="flex divide-x">
-        <div class="w-1/2 ">
-            {{ sprig('_components/article1.twig') }}
-        </div>
-        <div class="w-1/2">
-            {{ sprig('_components/article2.twig') }}
-        </div>
-    </div>
-{% endblock %}
+{% redirect 'products' %}

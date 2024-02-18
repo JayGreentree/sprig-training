@@ -1,0 +1,73 @@
+descriptionFormat: '{product.title} - {title}'
+handle: products
+hasDimensions: false
+hasProductTitleField: true
+hasVariantTitleField: false
+hasVariants: false
+name: Products
+productFieldLayouts:
+  be72b007-b301-4d30-82d7-53a0ed9a22ec:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\commerce\fieldlayoutelements\ProductTitleField
+            uid: e72f9176-462e-488e-a563-2bbfab3987fe
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: eb6c8b6c-8a32-42a9-9ab0-97414e63933d # Image
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c2b63f9e-e23e-47b6-8ac2-10e82f1ca371
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\commerce\fieldlayoutelements\VariantsField
+            uid: cac72456-60b5-4587-849e-c2ee4c0943e7
+            userCondition: null
+            warning: null
+        name: Content
+        uid: a7cd4d02-6bd5-412d-a716-8006b28c5a61
+        userCondition: null
+productTitleFormat: ''
+siteSettings:
+  bd3a4e55-c4e4-473f-8a85-dd23d31febdf: # Sprig Training
+    hasUrls: true
+    template: ''
+    uriFormat: 'products/{slug}'
+skuFormat: ''
+variantTitleFormat: '{product.title}'

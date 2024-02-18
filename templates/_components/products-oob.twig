@@ -1,0 +1,22 @@
+{% set productIds = craft.products.ids() %}
+
+<div>
+    <button sprig class="mb-4 w-full rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50" >
+        Apply Filters
+    </button>
+
+    <section aria-labelledby="cart-heading" class="lg:col-span-7">
+        <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
+        <ul role="list" class="space-y-4">
+            {% if productIds|length %}
+                {% for productId in productIds %}
+                    {{ sprig('_components/product-oob.twig', { productId: productId }) }}
+                {% endfor %}
+            {% else %}
+                <li class="flex p-4">
+                    No products found
+                </li>
+            {% endif %}
+        </ul>
+    </section>
+</div>

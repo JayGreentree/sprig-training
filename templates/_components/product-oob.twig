@@ -1,0 +1,76 @@
+{# @var product \craft\commerce\elements\Product #}
+{% set product = craft.products
+    .id(productId)
+    .with('image')
+    .one()
+%}
+
+<li class="flex p-4">
+    <div class="flex-shrink-0">
+        {% set image = product.image.one() %}
+        {% if image %}
+            <img src="{{ image.url }}" alt="{{ image.title }}" class="h-24 w-24 rounded-md object-cover object-center sm:h-36 sm:w-36"/>
+        {% endif %}
+    </div>
+    <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+        <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+            <div>
+                <div class="flex justify-between">
+                    <h3 class="text-md">
+                        <a class="font-medium text-gray-700 hover:text-gray-800">
+                            {{ product.title }}
+                        </a>
+                    </h3>
+                </div>
+                <p class="mt-1 text-md font-medium text-gray-900">
+                    {{ product.defaultPriceAsCurrency }}
+                </p>
+            </div>
+
+            {% if product.availableForPurchase %}
+                <form sprig s-method="post" s-action="commerce/cart/update-cart" s-val:purchasable-id="{{ product.defaultVariantId }}">
+                    <div class="mt-4 sm:mt-0 sm:pr-9">
+                        <select name="qty" class="form-select max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        <div>
+                            {% set purchasableId = purchasableId ?? null %}
+                            {% if purchasableId != product.defaultVariantId %}
+                                <button type="submit" class="mt-4 rounded-md border border-transparent bg-sky-700 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">
+                                    Add to Cart
+                                </button>
+                            {% else %}
+                                <button disabled class="mt-4 rounded-md border border-transparent bg-green-700 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-gray-50">
+                                    Added!
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </form>
+            {% else %}
+                <div class="mt-4 sm:mt-0 sm:pr-9">
+                    <button disabled class="rounded-md border border-transparent bg-gray-600 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                        Unavailable
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</li>
+
+{% if sprig.isRequest %}
+    <script>
+        htmx.trigger('#items', 'refresh');
+    </script>
+
+    <span id="itemQty" s-swap-oob="true">
+        {{ craft.commerce.carts.cart.totalQty }}
+    </span>
+{% endif %}

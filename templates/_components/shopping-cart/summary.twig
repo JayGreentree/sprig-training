@@ -1,0 +1,74 @@
+{% set products = craft.app.session.get('products') %}
+{% set prod1 = products.prod1 ?? 1 %}
+{% set prod2 = products.prod2 ?? 1 %}
+{% set prod3 = products.prod3 ?? 1 %}
+{% set prices = {
+  prod1: 32,
+  prod2: 50,
+  prod3: 35,
+} %}
+{% set items = prod1 + prod2 + prod3 %}
+{% set postCode = postCode ?? '' %}
+{% set subtotal = (prod1 * prices['prod1']) + (prod2 * prices['prod2']) + (prod3 * prices['prod3']) %}
+{% set tax = subtotal * 0.2 %}
+{% set shipping = postCode == '08010' ? 0 : 5 %}
+{% set total = subtotal + tax + shipping %}
+
+<!-- Order summary -->
+<section aria-labelledby="summary-heading" class="lg:col-span-5 ">
+    <div>
+        <a class="group -m-2 flex items-center justify-end p-2">
+            <div class="component cart w-24 h-10 flex items-center justify-end">
+                <svg class="h-8 w-8 flex-shrink-0 text-gray-600 group-hover:text-gray-700" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+                </svg>
+                <span class="ml-2 text-lg font-medium text-gray-700 group-hover:text-gray-800">{{ items }}</span>
+                <span class="sr-only">items in cart, view bag</span>
+            </div>
+        </a>
+    </div>
+    <div class="mt-0 bg-gray-50 px-4 py-6 sm:p-6 lg:mt-5 lg:p-8 component">
+        <h2 id="summary-heading" class="text-lg font-bold text-gray-900">Order summary</h2>
+
+        <dl class="mt-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <dt class="text-md text-gray-700">Subtotal</dt>
+                <dd class="text-md font-medium text-gray-900">€{{ subtotal|number(2) }}</dd>
+            </div>
+            <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt class="flex text-md text-gray-700">
+                    <span>VAT</span>
+                    <a title="VAT is charged at 20%." class="ml-2 flex-shrink-0 text-gray-500 hover:text-gray-600">
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </dt>
+                <dd class="text-md font-medium text-gray-900">€{{ tax|number(2) }}</dd>
+            </div>
+            <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt class="flex items-center text-md text-gray-700">
+                    <span>Shipping costs</span>
+                    <a title="Free shipping to “08010”." class="ml-2 flex-shrink-0 text-gray-500 hover:text-gray-600">
+                        <span class="sr-only">Learn more about how shipping is calculated</span>
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </dt>
+                <dd class="text-md font-medium text-gray-900">€{{ shipping|number(2) }}</dd>
+            </div>
+            <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt class="text-base font-bold text-gray-900">Order total</dt>
+                <dd class="text-base font-bold text-gray-900">€{{ total|number(2) }}</dd>
+            </div>
+        </dl>
+        <div class="flex mt-10 h-10 space-x-2">
+            <input name="postCode" type="text" value="{{ postCode }}" class="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-600 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-md sm:leading-6" placeholder="Post code for shipping">
+            <button sprig class="rounded-md border border-transparent bg-sky-700 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">Recalculate</button>
+        </div>
+        <div class="mt-6">
+            <button sprig id="checkout" class="w-full rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+        </div>
+    </div>
+</section>
