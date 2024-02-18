@@ -1,4 +1,4 @@
-dateModified: 1708225679
+dateModified: 1708264414
 elementSources:
   craft\commerce\elements\Product:
     -
@@ -47,7 +47,7 @@ meta:
     eb6c8b6c-8a32-42a9-9ab0-97414e63933d: Image # Image
 plugins:
   commerce:
-    edition: lite
+    edition: pro
     enabled: true
     licenseKey: W6R0XCZJ5VIQJ99V8UTTA2LQ
     schemaVersion: 4.2.8

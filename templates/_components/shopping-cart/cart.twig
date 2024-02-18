@@ -1,0 +1,77 @@
+{# @var cart \craft\commerce\elements\Order #}
+{% set cart = craft.commerce.carts.cart %}
+
+<div>
+    <section aria-labelledby="cart-heading" class="lg:col-span-7">
+        <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
+        <ul role="list" class="space-y-4">
+            {% if cart.lineItems|length %}
+                {% for item in cart.lineItems %}
+                    {# @var product \craft\commerce\elements\Product #}
+                    {% set product = item.purchasable.product %}
+                    <li class="flex p-4">
+                        <div class="flex-shrink-0">
+                            {% set image = product.image.one() %}
+                            {% if image %}
+                                <img src="{{ image.url }}" alt="{{ image.title }}" class="h-24 w-24 rounded-md object-cover object-center sm:h-36 sm:w-36"/>
+                            {% endif %}
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                            <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                                <div>
+                                    <div class="flex justify-between">
+                                        <h3 class="text-md">
+                                            <a class="font-medium text-gray-700 hover:text-gray-800">
+                                                {{ product.title }}
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <p class="mt-1 text-md font-medium text-gray-900">
+                                        {{ item.priceAsCurrency }}
+                                    </p>
+                                </div>
+
+                                <div class="mt-4 sm:mt-0 sm:pr-9">
+                                    <select sprig s-method="post" s-action="commerce/cart/update-cart" name="lineItems[{{ item.id }}][qty]" class="form-select max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+                                        {% if item.qty %}
+                                            <option value="1" {{ item.qty == 1 ? 'selected' }}>1</option>
+                                            <option value="2" {{ item.qty == 2 ? 'selected' }}>2</option>
+                                            <option value="3" {{ item.qty == 3 ? 'selected' }}>3</option>
+                                            <option value="4" {{ item.qty == 4 ? 'selected' }}>4</option>
+                                            <option value="5" {{ item.qty == 5 ? 'selected' }}>5</option>
+                                            <option value="6" {{ item.qty == 6 ? 'selected' }}>6</option>
+                                            <option value="7" {{ item.qty == 7 ? 'selected' }}>7</option>
+                                            <option value="8" {{ item.qty == 8 ? 'selected' }}>8</option>
+                                        {% else %}
+                                            <option value="0">0</option>
+                                        {% endif %}
+                                    </select>
+
+                                    <div class="absolute right-0 top-0">
+                                        <button sprig s-method="post" s-action="commerce/cart/update-cart" s-val:line-items[{{ item.id }}][remove]="1" type="button" class="-m-2 inline-flex p-2 text-gray-500 hover:text-gray-600">
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="min-w-80 flex p-4">
+                    No products in the cart
+                </li>
+            {% endif %}
+        </ul>
+    </section>
+</div>
+
+{% if oob ?? false %}
+    {% if sprig.isRequest %}
+        <span id="itemQty" s-swap-oob="true">
+            {{ craft.commerce.carts.cart.totalQty }}
+        </span>
+    {% endif %}
+{% endif %}

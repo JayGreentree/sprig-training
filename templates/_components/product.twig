@@ -5,7 +5,7 @@
     .one()
 %}
 
-<li class="flex p-4">
+<li class="product flex p-4">
     <div class="flex-shrink-0">
         {% set image = product.image.one() %}
         {% if image %}
@@ -65,8 +65,10 @@
     </div>
 </li>
 
-{% if sprig.isRequest %}
-    <script>
-        htmx.trigger('#items', 'refresh');
-    </script>
+{% if oob ?? false %}
+    {% if sprig.isRequest %}
+        <span id="itemQty" s-swap-oob="true">
+            {{ craft.commerce.carts.cart.totalQty }}
+        </span>
+    {% endif %}
 {% endif %}
