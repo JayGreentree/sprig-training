@@ -1,9 +1,21 @@
+{# For query caching to work, the status must be set to `null`, otherwise post end expiry dates are added to the query, which are timestamps that change on each request. This is safe to do, since the status was already checked in the parent `products` component. #}
+
 {# @var product \craft\commerce\elements\Product #}
 {% set product = craft.products
     .id(productId)
     .with('image')
+    .status(null)
+    .cache()
     .one()
 %}
+
+{% if oob ?? false %}
+    {% if sprig.isRequest %}
+        <span id="itemQty" s-swap-oob="true">
+            {{ craft.commerce.carts.cart.totalQty }}
+        </span>
+    {% endif %}
+{% endif %}
 
 <li class="product flex p-4">
     <div class="flex-shrink-0">
@@ -69,11 +81,3 @@
         </div>
     </div>
 </li>
-
-{% if oob ?? false %}
-    {% if sprig.isRequest %}
-        <span id="itemQty" s-swap-oob="true">
-            {{ craft.commerce.carts.cart.totalQty }}
-        </span>
-    {% endif %}
-{% endif %}

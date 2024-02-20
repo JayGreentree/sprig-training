@@ -1,6 +1,14 @@
 {# @var cart \craft\commerce\elements\Order #}
 {% set cart = craft.commerce.carts.cart %}
 
+{% if oob ?? false %}
+    {% if sprig.isRequest %}
+        <span id="itemQty" s-swap-oob="true">
+            {{ cart.totalQty }}
+        </span>
+    {% endif %}
+{% endif %}
+
 <div>
     <section aria-labelledby="cart-heading" class="lg:col-span-7">
         <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
@@ -67,11 +75,3 @@
         </ul>
     </section>
 </div>
-
-{% if oob ?? false %}
-    {% if sprig.isRequest %}
-        <span id="itemQty" s-swap-oob="true">
-            {{ craft.commerce.carts.cart.totalQty }}
-        </span>
-    {% endif %}
-{% endif %}

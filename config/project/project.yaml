@@ -1,4 +1,4 @@
-dateModified: 1708436070
+dateModified: 1708437123
 elementSources:
   craft\commerce\elements\Product:
     -
@@ -35,6 +35,7 @@ fs:
 meta:
   __names__:
     0b2826e6-4b3f-47c6-a726-df613dcdd607: Text # Text
+    57dcd468-699f-4123-94e0-7ef4f7c608fa: Colour # Colour
     76ceebcf-6e96-4ed0-8792-e33851d9b8f1: Products # Products
     78d705b6-3fee-471b-9451-847caf510cde: Dummy # Dummy
     326db6f6-0577-4166-a7f3-c64d1c0b1bc3: Common # Common
