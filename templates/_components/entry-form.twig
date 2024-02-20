@@ -1,9 +1,11 @@
 <div class="min-w-80 mb-4 flex space-x-6">
     <form sprig s-method="post" s-action="entries/save-entry" class="space-y-4 w-full">
         {{ hiddenInput('sectionId', 1) }}
-        <h1 class="text-3xl">New Entry</h1>
+        <h1 class="text-3xl">
+            New Article
+        </h1>
         <input name="title" type="text" value="{{ title ?? '' }}" class="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-600 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-md sm:leading-6" placeholder="Title">
-        <textarea name="text" type="text" class="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-600 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-md sm:leading-6" placeholder="Text">
+        <textarea name="text" type="text" class="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-600 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-md sm:leading-6 h-32" placeholder="Text">
             {{- text ?? '' -}}
         </textarea>
         <button type="submit" class="rounded-md border border-transparent bg-sky-700 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">

@@ -1,0 +1,81 @@
+{# @var productQuery \craft\commerce\elements\db\ProductQuery #}
+{% set productQuery = craft.products.with('image') %}
+{% if price ?? null %}
+    {% do productQuery.defaultPrice('<' ~ price) %}
+{% endif %}
+{% if available ?? null %}
+    {% do productQuery.availableForPurchase(true) %}
+{% endif %}
+{% set products = productQuery.all() %}
+
+<div s-replace="#results" class="flex justify-center pb-4 mb-4 border-b">
+    <select name="price" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All prices</option>
+        <option value="20">< $20</option>
+        <option value="50">< $50</option>
+        <option value="100">< $100</option>
+    </select>
+    <select name="available" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All availability</option>
+        <option value="1">Only available</option>
+    </select>
+    <button sprig class="rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">
+        Apply Filters
+    </button>
+</div>
+
+<section id="results" aria-labelledby="cart-heading" class="lg:col-span-7">
+    <ul role="list" class="space-y-4">
+        {% if products|length %}
+            {# @var product \craft\commerce\elements\Product #}
+            {% for product in products %}
+                <li class="product flex p-4">
+                    <div class="flex-shrink-0">
+                        {% set image = product.image.one() %}
+                        {% if image %}
+                            <img src="{{ image.url }}" alt="{{ image.title }}" class="h-24 w-24 rounded-md object-cover object-center sm:h-36 sm:w-36"/>
+                        {% endif %}
+                    </div>
+                    <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                        <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                            <div>
+                                <div class="flex justify-between">
+                                    <h3 class="text-md">
+                                        <a class="font-medium text-gray-700 hover:text-gray-800">
+                                            {{ product.title }}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <p class="mt-1 text-md font-medium text-gray-900">
+                                    {{ product.defaultPriceAsCurrency }}
+                                </p>
+                                <div class="mt-4 sm:pr-9">
+                                    {% if product.availableForPurchase %}
+                                        <button disabled class="rounded-md border border-transparent bg-green-700 px-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-gray-50">
+                                            Available
+                                        </button>
+                                    {% else %}
+                                        <button disabled class="rounded-md border border-transparent bg-gray-600 px-2 text-base font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                                            Unavailable
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="mt-4 sm:mt-0 sm:pr-9">
+                                <button type="submit" class="mt-4 rounded-md border border-transparent bg-sky-700 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">
+                                    View Product
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            {% endfor %}
+        {% else %}
+            <li class="flex p-4">
+                No products found
+            </li>
+        {% endif %}
+    </ul>
+</section>
+
