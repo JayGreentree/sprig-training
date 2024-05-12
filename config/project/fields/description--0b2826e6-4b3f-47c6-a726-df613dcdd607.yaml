@@ -1,10 +1,10 @@
 columnSuffix: rjoqbfzd
 contentColumnType: text
 fieldGroup: 326db6f6-0577-4166-a7f3-c64d1c0b1bc3 # Common
-handle: text
+handle: description
 instructions: null
-name: Text
-searchable: false
+name: Description
+searchable: true
 settings:
   byteLimit: null
   charLimit: null

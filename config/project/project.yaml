@@ -1,4 +1,4 @@
-dateModified: 1708437123
+dateModified: 1715544223
 elementSources:
   craft\commerce\elements\Product:
     -
@@ -34,7 +34,7 @@ fs:
     url: /assets/images
 meta:
   __names__:
-    0b2826e6-4b3f-47c6-a726-df613dcdd607: Text # Text
+    0b2826e6-4b3f-47c6-a726-df613dcdd607: Description # Description
     57dcd468-699f-4123-94e0-7ef4f7c608fa: Colour # Colour
     76ceebcf-6e96-4ed0-8792-e33851d9b8f1: Products # Products
     78d705b6-3fee-471b-9451-847caf510cde: Dummy # Dummy
@@ -51,7 +51,7 @@ plugins:
     edition: pro
     enabled: true
     licenseKey: W6R0XCZJ5VIQJ99V8UTTA2LQ
-    schemaVersion: 4.2.8
+    schemaVersion: 4.5.2
   sprig:
     edition: standard
     enabled: true

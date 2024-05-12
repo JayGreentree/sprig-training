@@ -1,12 +1,12 @@
 {% extends '_layout.twig' %}
 
 {% block body %}
-    <div class="text-center text-2xl mt-16 space-y-8">
-        <a href="/entry-form" class="block">Entry Form →</a>
-        <a href="/listing" class="block">Listing →</a>
-        <a href="/products" class="block">Products →</a>
-        <a href="/products-oob" class="block">Products (out-of-band) →</a>
-        <a href="/shopping-cart" class="block">Shopping Cart →</a>
-        <a href="/shopping-cart-oob" class="block">Shopping Cart (out-of-band) →</a>
+    <div class="m-4 flex justify-center items-center">
+        <div class="mx-auto">
+            <div class="mt-3 flex align-start">
+                {{ sprig('_components/listing') }}
+            </div>
+        </div>
     </div>
 {% endblock %}
+

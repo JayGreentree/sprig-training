@@ -52,6 +52,30 @@ productFieldLayouts:
             width: 100
           -
             elementCondition: null
+            fieldUid: 57dcd468-699f-4123-94e0-7ef4f7c608fa # Colour
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9993725b-6c75-43ae-aaaf-cf374499f2f4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: 0b2826e6-4b3f-47c6-a726-df613dcdd607 # Description
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 49cdbf38-5e25-487e-8ce7-ea68f4246d80
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
             instructions: null
             label: null
             required: false
