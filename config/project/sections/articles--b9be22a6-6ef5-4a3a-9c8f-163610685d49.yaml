@@ -1,5 +1,7 @@
 defaultPlacement: end
 enableVersioning: true
+entryTypes:
+  - b1797aea-7808-418c-a68b-1cb07b2b1c7c # Default
 handle: articles
 name: Articles
 propagationMethod: all

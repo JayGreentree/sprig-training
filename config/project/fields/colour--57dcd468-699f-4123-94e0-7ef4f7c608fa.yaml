@@ -1,19 +1,43 @@
 columnSuffix: hpitsupp
-contentColumnType: text
-fieldGroup: 326db6f6-0577-4166-a7f3-c64d1c0b1bc3 # Common
 handle: colour
 instructions: null
 name: Colour
 searchable: false
 settings:
-  byteLimit: null
-  charLimit: null
-  code: false
-  columnType: null
-  initialRows: 4
-  multiline: false
-  placeholder: null
-  uiMode: normal
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Yellow
+        -
+          - value
+          - yellow
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - White
+        -
+          - value
+          - white
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Black
+        -
+          - value
+          - black
+        -
+          - default
+          - ''
 translationKeyFormat: null
 translationMethod: none
-type: craft\fields\PlainText
+type: craft\fields\Dropdown

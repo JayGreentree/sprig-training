@@ -1,23 +1,16 @@
 {# @var productQuery \craft\commerce\elements\db\ProductQuery #}
-{% set productQuery = craft.products.with('image') %}
-{% if price ?? null %}
-    {% do productQuery.defaultPrice('<' ~ price) %}
-{% endif %}
-{% if available ?? null %}
-    {% do productQuery.availableForPurchase(true) %}
+{% set productQuery = craft.products %}
+{% if colour ?? null %}
+    {% do productQuery.colour(colour) %}
 {% endif %}
 {% set products = productQuery.all() %}
 
 <div s-replace="#results" class="flex justify-center pb-4 mb-4 border-b">
-    <select name="price" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
-        <option value="">All prices</option>
-        <option value="20">< $20</option>
-        <option value="50">< $50</option>
-        <option value="100">< $100</option>
-    </select>
-    <select name="available" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
-        <option value="">All availability</option>
-        <option value="1">Only available</option>
+    <select name="colour" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All colours</option>
+        <option value="yellow">Yellow</option>
+        <option value="white">White</option>
+        <option value="black">Black</option>
     </select>
     <button sprig class="rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">
         Apply Filters
@@ -31,7 +24,7 @@
             {% for product in products %}
                 <li class="product flex p-4">
                     <div class="flex-shrink-0">
-                        {% set image = product.image.one() %}
+                        {% set image = product.image.eagerly().one() %}
                         {% if image %}
                             <img src="{{ image.url }}" alt="{{ image.title }}" class="h-24 w-24 rounded-md object-cover object-center sm:h-36 sm:w-36"/>
                         {% endif %}
@@ -49,17 +42,6 @@
                                 <p class="mt-1 text-md font-medium text-gray-900">
                                     {{ product.defaultPriceAsCurrency }}
                                 </p>
-                                <div class="mt-4 sm:pr-9">
-                                    {% if product.availableForPurchase %}
-                                        <button disabled class="rounded-md border border-transparent bg-green-700 px-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-gray-50">
-                                            Available
-                                        </button>
-                                    {% else %}
-                                        <button disabled class="rounded-md border border-transparent bg-gray-600 px-2 text-base font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50">
-                                            Unavailable
-                                        </button>
-                                    {% endif %}
-                                </div>
                             </div>
                             <div class="mt-4 sm:mt-0 sm:pr-9">
                                 <button type="submit" class="mt-4 rounded-md border border-transparent bg-sky-700 px-2 py-1 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">

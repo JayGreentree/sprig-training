@@ -3,7 +3,7 @@ handle: products
 hasDimensions: false
 hasProductTitleField: true
 hasVariantTitleField: false
-hasVariants: true
+maxVariants: null
 name: Products
 productFieldLayouts:
   be72b007-b301-4d30-82d7-53a0ed9a22ec:
