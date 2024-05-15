@@ -1,19 +1,18 @@
 {# @var productQuery \craft\commerce\elements\db\ProductQuery #}
 {% set productQuery = craft.products %}
 
-{% set mobile = mobile ?? false %}
 {% set colours = colours ?? [] %}
 {% set coloursMobile = coloursMobile ?? [] %}
+{% set mobile = mobile ?? false %}
 {% if mobile %}
     {% set colours = coloursMobile %}
-{% else %}
-    {% set coloursMobile = colours %}
 {% endif %}
 
 {% set deselectColour = deselectColour ?? null %}
 {% if deselectColour %}
     {% set colours = colours|filter(value => value != deselectColour) %}
 {% endif %}
+{% set coloursMobile = colours %}
 
 {% do productQuery.colour(colours) %}
 
@@ -83,6 +82,21 @@
 {#    </button>#}
 </div>
 
+{% if colours is not empty %}
+    <div class="pb-4 mb-4 border-b">
+        {% for colourOption in colourOptions %}
+            {% if colourOption.value in colours %}
+                <span sprig s-val:deselect-colour="{{ colourOption.value }}" class="cursor-pointer inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                    {{ colourOption.label }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="ml-1 w-4 h-4">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm2.78-4.22a.75.75 0 0 1-1.06 0L8 9.06l-1.72 1.72a.75.75 0 1 1-1.06-1.06L6.94 8 5.22 6.28a.75.75 0 0 1 1.06-1.06L8 6.94l1.72-1.72a.75.75 0 1 1 1.06 1.06L9.06 8l1.72 1.72a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
 <section id="results" aria-labelledby="cart-heading" class="lg:col-span-7">
     <ul role="list" class="space-y-4">
         {% if products|length %}
@@ -124,21 +138,6 @@
             </li>
         {% endif %}
     </ul>
-</section>
-
-<section>
-    <div class="block mr-8">
-        {% for colourOption in colourOptions %}
-            {% if colourOption.value in colours %}
-                <span sprig s-val:deselect-colour="{{ colourOption.value }}" class="cursor-pointer inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-                    {{ colourOption.label }}
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="ml-1 w-4 h-4">
-                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm2.78-4.22a.75.75 0 0 1-1.06 0L8 9.06l-1.72 1.72a.75.75 0 1 1-1.06-1.06L6.94 8 5.22 6.28a.75.75 0 0 1 1.06-1.06L8 6.94l1.72-1.72a.75.75 0 1 1 1.06 1.06L9.06 8l1.72 1.72a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
-                    </svg>
-                </span>
-            {% endif %}
-        {% endfor %}
-    </div>
 </section>
 
 <script>
