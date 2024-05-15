@@ -73,6 +73,21 @@ productFieldLayouts:
             width: 100
           -
             elementCondition: null
+            fieldUid: 99d30c67-07aa-47f4-9559-744b5337fdfe # Materials
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 89927820-c649-4415-836e-5e969370d306
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
             fieldUid: 538464ce-c5c0-49ae-badb-fa161b18063c # Brand
             handle: null
             includeInCards: false

@@ -1,4 +1,4 @@
-dateModified: 1715759303
+dateModified: 1715784675
 elementSources:
   craft\commerce\elements\Product:
     -
@@ -44,6 +44,7 @@ meta:
     57dcd468-699f-4123-94e0-7ef4f7c608fa: Colour # Colour
     76ceebcf-6e96-4ed0-8792-e33851d9b8f1: Products # Products
     78d705b6-3fee-471b-9451-847caf510cde: Dummy # Dummy
+    99d30c67-07aa-47f4-9559-744b5337fdfe: Materials # Materials
     4990dcf7-9b86-489e-a06a-2bc0c0f2b3d1: Country # Country
     538464ce-c5c0-49ae-badb-fa161b18063c: Brand # Brand
     63787053-c58d-42f3-af9c-632e7dc01f35: Images # Images

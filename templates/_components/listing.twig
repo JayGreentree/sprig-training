@@ -1,26 +1,86 @@
 {# @var productQuery \craft\commerce\elements\db\ProductQuery #}
 {% set productQuery = craft.products %}
 
-{% set colour = colour ?? null %}
-{% if colour %}
-    {% do productQuery.colour(colour) %}
+{% set mobile = mobile ?? false %}
+{% set colours = colours ?? [] %}
+{% set coloursMobile = coloursMobile ?? [] %}
+{% if mobile %}
+    {% set colours = coloursMobile %}
+{% else %}
+    {% set coloursMobile = colours %}
 {% endif %}
+
+{% set deselectColour = deselectColour ?? null %}
+{% if deselectColour %}
+    {% set colours = colours|filter(value => value != deselectColour) %}
+{% endif %}
+
+{% do productQuery.colour(colours) %}
+
+{% set materials = materials ?? [] %}
+{% if materials is not empty %}
+    {% set materials = ['and']|merge(materials) %}
+    {% do productQuery.materials(materials) %}
+{% endif %}
+
+{% set brand = brand ?? null %}
+{% if brand %}
+    {% do productQuery.andRelatedTo(brand) %}
+{% endif %}
+
 {% set products = productQuery.all() %}
 
 {% set colourOptions = craft.app.fields.fieldByHandle('colour').options %}
+{% set materialOptions = craft.app.fields.fieldByHandle('materials').options %}
+{% set brandOptions = craft.entries.section('brands').all() %}
+
+{% set countryOptions = craft.entries.section('countries')
+    .relatedTo(brand)
+    .all()
+%}
+{% set country = country ?? null %}
 
 <div class="flex justify-center pb-4 mb-4 border-b">
-    <select name="colour" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
-        <option value="">All colours</option>
+    <div class="block mr-8">
         {% for colourOption in colourOptions %}
-            <option value="{{ colourOption.value }}" {{ colourOption.value == colour ? 'selected' }}>
-                {{ colourOption.label }}
+            <input sprig type="checkbox" name="colours[]" id="colours-{{ loop.index }}" value="{{ colourOption.value }}" {{ colourOption.value in colours ? 'checked' }}>
+            <label for="colours-{{ loop.index }}">{{ colourOption.label }} [desktop]</label>
+            <br>
+        {% endfor %}
+    </div>
+    <div s-val:mobile="1" class="block mr-8">
+        {% for colourOption in colourOptions %}
+            <input sprig type="checkbox" name="coloursMobile[]" id="coloursMobile-{{ loop.index }}" value="{{ colourOption.value }}" {{ colourOption.value in coloursMobile ? 'checked' }}>
+            <label for="coloursMobile-{{ loop.index }}">{{ colourOption.label }} [mobile]</label>
+            <br>
+        {% endfor %}
+    </div>
+    <div class="block mr-8">
+        {% for materialOption in materialOptions %}
+            <input sprig type="checkbox" name="materials[]" id="materials-{{ loop.index }}" value="{{ materialOption.value }}" {{ materialOption.value in materials ? 'checked' }}>
+            <label for="materials-{{ loop.index }}">{{ materialOption.label }}</label>
+            <br>
+        {% endfor %}
+    </div>
+    <select sprig name="brand" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All brands</option>
+        {% for brandOption in brandOptions %}
+            <option value="{{ brandOption.id }}" {{ brandOption.id == brand ? 'selected' }}>
+                {{ brandOption.title }}
             </option>
         {% endfor %}
     </select>
-    <button sprig class="rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">
-        Apply Filters
-    </button>
+    <select sprig name="country" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All countries</option>
+        {% for countryOption in countryOptions %}
+            <option value="{{ countryOption.id }}" {{ countryOption.id == country ? 'selected' }}>
+                {{ countryOption.title }}
+            </option>
+        {% endfor %}
+    </select>
+{#    <button sprig class="rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">#}
+{#        Apply Filters#}
+{#    </button>#}
 </div>
 
 <section id="results" aria-labelledby="cart-heading" class="lg:col-span-7">
@@ -66,3 +126,20 @@
     </ul>
 </section>
 
+<section>
+    <div class="block mr-8">
+        {% for colourOption in colourOptions %}
+            {% if colourOption.value in colours %}
+                <div s-val:deselect-colour="{{ colourOption.value }}">
+                    {{ colourOption.label }}
+                    <span sprig class="text-blue-600">X</span>
+                    /
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    htmx.find('#counter').value = {{ products|length }};
+</script>

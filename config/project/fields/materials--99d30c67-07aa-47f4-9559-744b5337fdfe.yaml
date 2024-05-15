@@ -1,0 +1,43 @@
+columnSuffix: null
+handle: materials
+instructions: null
+name: Materials
+searchable: false
+settings:
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Cotton
+        -
+          - value
+          - cotton
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Elastic
+        -
+          - value
+          - elastic
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Polysomething
+        -
+          - value
+          - polysomething
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Checkboxes
