@@ -457,16 +457,16 @@
         },
         {
             "name": "craftcms/commerce",
-            "version": "5.0.5",
+            "version": "5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/craftcms/commerce.git",
-                "reference": "198db3860e6571cf95a945f852f850cafd1a1b4d"
+                "reference": "cabc764c009879c0fac504b5f6b90de300ec6d30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/commerce/zipball/198db3860e6571cf95a945f852f850cafd1a1b4d",
-                "reference": "198db3860e6571cf95a945f852f850cafd1a1b4d",
+                "url": "https://api.github.com/repos/craftcms/commerce/zipball/cabc764c009879c0fac504b5f6b90de300ec6d30",
+                "reference": "cabc764c009879c0fac504b5f6b90de300ec6d30",
                 "shasum": ""
             },
             "require": {
@@ -527,7 +527,7 @@
                 "rss": "https://github.com/craftcms/commerce/releases.atom",
                 "source": "https://github.com/craftcms/commerce"
             },
-            "time": "2024-05-09T07:58:42+00:00"
+            "time": "2024-05-15T14:12:08+00:00"
         },
         {
             "name": "craftcms/plugin-installer",
