@@ -1,0 +1,65 @@
+color: null
+fieldLayouts:
+  a740fa96-aa3c-4cf8-afbe-da0fe8e56a3f:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 1dbfaf23-e945-40cb-bc74-da94191889da
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            elementCondition: null
+            fieldUid: adf2df73-86b8-40d0-982b-46f2c3a1e194 # Countries
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1668e7f7-53b1-4a9f-a4a1-36a0b320791f
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 5c332718-b9d0-4b5d-a691-03862e40a8db
+        userCondition: null
+handle: brand
+hasTitleField: true
+icon: ''
+name: Brand
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: ''
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

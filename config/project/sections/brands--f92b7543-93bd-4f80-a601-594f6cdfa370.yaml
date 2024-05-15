@@ -1,0 +1,27 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  - 36cba068-6c7e-426b-9fad-d99775b88e98 # Brand
+handle: brands
+maxAuthors: 1
+name: Brands
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  bd3a4e55-c4e4-473f-8a85-dd23d31febdf: # Sprig Training
+    enabledByDefault: true
+    hasUrls: true
+    template: brands/_entry
+    uriFormat: 'brands/{slug}'
+type: channel

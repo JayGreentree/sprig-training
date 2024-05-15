@@ -1,0 +1,27 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  - 4990dcf7-9b86-489e-a06a-2bc0c0f2b3d1 # Country
+handle: countries
+maxAuthors: 1
+name: Countries
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  bd3a4e55-c4e4-473f-8a85-dd23d31febdf: # Sprig Training
+    enabledByDefault: true
+    hasUrls: true
+    template: locations/_entry
+    uriFormat: 'locations/{slug}'
+type: channel

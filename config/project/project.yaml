@@ -1,4 +1,4 @@
-dateModified: 1715545668
+dateModified: 1715759303
 elementSources:
   craft\commerce\elements\Product:
     -
@@ -39,17 +39,23 @@ graphql:
 meta:
   __names__:
     0b2826e6-4b3f-47c6-a726-df613dcdd607: Description # Description
+    8afd4ad2-0e16-4ff9-8b3e-95a64f2ec686: Countries # Countries
+    36cba068-6c7e-426b-9fad-d99775b88e98: Brand # Brand
     57dcd468-699f-4123-94e0-7ef4f7c608fa: Colour # Colour
     76ceebcf-6e96-4ed0-8792-e33851d9b8f1: Products # Products
     78d705b6-3fee-471b-9451-847caf510cde: Dummy # Dummy
+    4990dcf7-9b86-489e-a06a-2bc0c0f2b3d1: Country # Country
+    538464ce-c5c0-49ae-badb-fa161b18063c: Brand # Brand
     63787053-c58d-42f3-af9c-632e7dc01f35: Images # Images
     a5992712-f8e7-40f9-a127-2b87b50eb960: New # New
+    adf2df73-86b8-40d0-982b-46f2c3a1e194: Countries # Countries
     b9be22a6-6ef5-4a3a-9c8f-163610685d49: Articles # Articles
     b1797aea-7808-418c-a68b-1cb07b2b1c7c: Default # Default
     bd3a4e55-c4e4-473f-8a85-dd23d31febdf: 'Sprig Training' # Sprig Training
     d495a9f4-ec12-4552-b53e-346065fabeaa: 'Sprig Training' # Sprig Training
     e7b0d812-496a-462a-b37a-b6ecee3ba260: 'Primary Store' # Primary Store
     eb6c8b6c-8a32-42a9-9ab0-97414e63933d: Image # Image
+    f92b7543-93bd-4f80-a601-594f6cdfa370: Brands # Brands
 plugins:
   commerce:
     edition: pro
